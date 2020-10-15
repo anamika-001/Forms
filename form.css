@@ -1,0 +1,72 @@
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+  form .error {
+    color: #ff0000;
+  }
+  body{
+  	background: url("hero4.jpg");
+  	 
+    background-repeat: no-repeat;
+   width:100%;
+   height:auto;
+   background-size:cover;
+  opacity: 0.9;
+
+  }
+  label(
+    font-size: dark 20px;
+    )
+
+  .field{
+  	padding-left: 50px;
+  	padding-right: 50px;
+  }
+
+  .card {
+       background-color: cadetblue;
+         background-repeat: no-repeat;
+
+
+   height:auto;
+   background-size:cover;
+
+         margin-bottom: 50px;
+         margin-left: 100px;
+         margin-right: 50px;
+         margin-top: 50px;
+          float: none; /* Added */
+          
+         
+        
+  }
+  .col-md-4{
+
+  	 display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  label.header {
+      font-size: 16px;
+      font-weight: 500;
+      width: 215px;
+      color: grey;
+      margin-right:10px;
+      text-align:justify;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      font-family: 'Nunito', sans-serif;
+  }
+
+  .profile{
+  	display: flex;
+  	align-items:  center;
+  	justify-content: center;
+  }
+  div img{
+    background-size: cover;
+     width: 100px;
+     height:100px;
+    
+     
+  }

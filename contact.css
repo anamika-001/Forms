@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+body {
+ background-image: url("https://previews.123rf.com/images/279photo/279photo1705/279photo170501991/81032796-client-support-service-workdesk-with-contact-us-signs-dark-background-top-view-mockup.jpg");
+ opacity:0.9;
+  background-repeat: no-repeat;
+ width:100%;
+ height:auto;
+ background-size:cover;
+}
+
+
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
+.btn{
+	background-color:#3e4852;
+	color:white;
+	font-size:14px;
+}
+form .error {
+  color: #ff0000;
+}
+
+input[type="text"]::-ms-input-placeholder {  
+                  
+               
+                text-align: top; 
+            } 
