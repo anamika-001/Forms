@@ -11,35 +11,36 @@
     	
     	<!-- card-view -->
       <div class="card" style="width: 30rem; top:100px;">
-         <div class="bg-dark"><h4 class="card-title text-center" style="color: white; padding: 5px;">Contact Us</h4></div>
-         <form action="suggestions.php" method="post" id="registerform" name="contact">
-         <div class="card-body form-group">
-            <label for="full-name" style="color: #3e4852">Full Name</label>
-            	<input type="name" name="fullname" id="full-name" class="form-control form-rounded" placeholder="full name" required="">
-                
+       <div class="bg-dark"><h4 class="card-title text-center" style="color: white; padding: 5px;">Contact Us</h4></div>
+       <form  id="registerform" name="contact">
+           <div class="card-body form-group">
+            <label for="fullname" style="color: #3e4852">Full Name</label>
+            <input type="text" name="fullname" id="fullname" class="form-control form-rounded" placeholder="full name" required="">
+
             
-             <br>
+            <br>
             <label for="email">Email  </label>
-            	<input type="email" name="email" id="email" class="form-control form-rounded" placeholder="email" required="">
-          
-        <br>
+            <input type="email" name="email" id="email" class="form-control form-rounded" placeholder="email" required="">
+
+            <br>
             <label for="message"> Message </label>
-            	<textarea type="text" name="message" id="message" class="form-control form-rounded" placeholder="Message..." style="height:150px;" required=""></textarea> 
-          
+            <textarea type="text" name="message" id="message" class="form-control form-rounded" placeholder="Message..." style="height:150px;" required=""></textarea> 
+
             <br>
             <div class="text-center">
-            <button class="btn" name="submit" type="submit" value="submit">SEND EMAIL <span class="fa fa-arrow-right"></span></button>
+                <button class="btn submit" id="submitBtn" type="submit" >SEND EMAIL <span class="fa fa-arrow-right"></span></button>
             </div>
 
             
-    
-           </div>
-         </form>
-        
-         <div  class="text-center bottom" ><h6>Contact our 24/7 call center<span style="color: #17a2b8">+12345678</span></h6></div>
 
-      </div>
-    </div>
+        </div>
+    </form>
+
+    <div  class="text-center bottom" ><h6>Contact our 24/7 call center<span style="color: #17a2b8">+12345678</span></h6></div>
+
+
+</div>
+</div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

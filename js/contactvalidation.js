@@ -1,12 +1,14 @@
+
+
 $(document).ready(function() {
   $.validator.addMethod("EMAIL", function(value, element) {
                 return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/i.test(value);
             }, "Email Address is invalid: Please enter valid email address.");
 
+ 
 
-$('form').on("submit",function(event) {
-      
-         event.preventDefault( alert("submission intercepted"));
+$('#submitBtn').on("click",function(event) {
+
         var formData = {
             'name': $('input[name=fullname]').val(),
             'email': $('input[name=email]').val(),
@@ -73,10 +75,11 @@ $('form').on("submit",function(event) {
     },
     },
     
-    submitHandler: function(form,event) {
-         event.preventDefault();
-
-     }
+    submitHandler: function(form) { // <- pass 'form' argument in
+          console.log(form);
+            $(".submit").attr("disabled", true);
+            form.submit(); // <- use 'form' argument here.
+        }
   });
 
 
