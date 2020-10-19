@@ -7,7 +7,101 @@ $(document).ready(function() {
                 return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/i.test(value);
             },"Passwords are 8-16 characters with uppercase letters, lowercase letters and at least one number.");
 
+  // // -----------ajax------------------
+  // $("#fform").on('submit', function(e){
+  //       e.preventDefault();
+  //       $.ajax({
+  //           type: 'POST',
+  //           url: 'submit.php',
+  //           data: new FormData(this),
+  //           dataType: 'json',
+  //           contentType: false,
+  //           cache: false,
+  //           processData:false,
+  //           beforeSend: function(){
+              
+  //               $('.submitbtn').attr("disabled","disabled");
+  //               $('#fform').css("opacity",".5");
+        
+  //           },
+             
+  //           success: function(response){
+                
+  //               $('.statusMsg').html('');
+  //               if(response.status == 1){
+  //                   $('#fform')[0].reset();
+  //                   $('.statusMsg').html('<p class="alert alert-success">'+response.message+'</p>');
+  //               }else{
+  //                   $('.statusMsg').html('<p class="alert alert-danger">'+response.message+'</p>');
+  //               }
+  //               $('#fform').css("opacity","");
+  //               $(".submitbtn").removeAttr("disabled");
+  //           }
+
+  //           error: function(error){
+  //             console.log(error);
+  //           }
+  //       });
+  //   });
   
+  //   // File type validation
+  //   var match = [ 'image/jpeg', 'image/png', 'image/jpg'];
+  //   $("#file").change(function() {
+  //       for(i=0;i<this.files.length;i++){
+  //           var file = this.files[i];
+  //           var fileType = file.type;
+      
+  //           if(!((fileType == match[0]) || (fileType == match[1]) || (fileType == match[2]))){
+  //               alert('Sorry, only JPG, JPEG, & PNG files are allowed to upload.');
+  //               $("#file").val('');
+  //               return false;
+  //           }
+  //       }
+  //   });
+
+
+    $('.submitbtn').on("click",function(event) {
+
+        var formData = {
+            'firstname': $('input[name=firstname]').val(),
+            'lastname': $('input[name=lastname]').val(),
+            'email': $('input[name=email]').val(),
+            'contact': $('input[name=contact]').val(),
+            'password': $('input[name=password]').val(),
+            'confirmpassword': $('input[name=confirmpassword]').val(),
+            'description': $('textarea[name=description]').val(),
+        };
+
+       
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'form.php', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+            encode          : true,
+       
+            success:function(data){
+              console.log(data);
+              if(data.success==true){
+                console.log('completed');
+
+              }else{
+                console.log('validation fail');
+
+              }
+            },
+            error:function(error){
+              console.log(error);
+            }
+          })
+
+        return false;
+       
+    });
+
+
+
+
   $("form[name='registration']").validate({
     
     rules: {
@@ -72,11 +166,7 @@ $(document).ready(function() {
 
    
     
-    submitHandler: function(form) {
-      form.submit(alert("succesfully submitted"));
-
-      
-      }
+    
   });
 
 
