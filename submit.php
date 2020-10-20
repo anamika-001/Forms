@@ -1,5 +1,5 @@
 <?php 
-include_once 'js/dbconfig.php'; 
+
 $uploadDir = 'uploads/'; 
 $allowTypes = array('jpg', 'png', 'jpeg'); 
 $response = array( 

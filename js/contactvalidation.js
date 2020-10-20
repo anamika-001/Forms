@@ -5,43 +5,6 @@ $(document).ready(function() {
                 return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/i.test(value);
             }, "Email Address is invalid: Please enter valid email address.");
 
- 
-
-$('#submitBtn').on("click",function(event) {
-
-        var formData = {
-            'name': $('input[name=fullname]').val(),
-            'email': $('input[name=email]').val(),
-            'message': $('textarea[name=message]').val()
-        };
-
-       
-        $.ajax({
-            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url         : 'suggestions.php', // the url where we want to POST
-            data        : formData, // our data object
-            dataType    : 'json', // what type of data do we expect back from the server
-            encode          : true,
-       
-            success:function(data){
-              console.log(data);
-              if(data.success==true){
-                console.log('completed');
-
-              }else{
-                console.log('validation fail');
-
-              }
-            },
-            error:function(error){
-              console.log(error);
-            }
-          })
-
-        return false;
-       
-    });
-
   $("form[name='contact']").validate({
     
     rules: {
@@ -74,13 +37,55 @@ $('#submitBtn').on("click",function(event) {
         minlength:"elaborate little more"
     },
     },
-    
-    submitHandler: function(form) { // <- pass 'form' argument in
-          console.log(form);
-            $(".submit").attr("disabled", true);
-            form.submit(); // <- use 'form' argument here.
-        }
-  });
+  
+     submitHandler:function(event){
+        
+             
+          
+        var formData = {
+            'fullname': $('input[name=fullname]').val(),
+            'email': $('input[name=email]').val(),
+            'message': $('textarea[name=message]').val()
+        };
 
+       
+        $.ajax({
+            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
+            url         : 'suggestions.php', // the url where we want to POST
+            data        : formData, // our data object
+            dataType    : 'json', // what type of data do we expect back from the server
+            encode          : true,
+       
+            success:function(data){
+              console.log(data);
+              if(data.success==true){
+                console.log('completed');
+                //$("#").reset();
+                document.getElementById("submitBtn").reset();
+
+              }else{
+                console.log('validation fail');
+
+              }
+            },
+            error:function(error){
+              console.log(error);
+            }
+          })
+
+
+
+
+        return false;
+
+     }
+
+    });
+
+
+  // $(".submit").on("click",function(event) {
+            
+       
+  //   });
 
 });

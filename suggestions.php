@@ -6,7 +6,7 @@ $data           = array();
 
 
 if (empty($_REQUEST['fullname']))
-    $errors['fullname'] = 'Name is required.';
+    $errors['name'] = 'Name is required.';
 
 if (empty($_REQUEST['email']))
     $errors['email'] = 'Email is required.';
