@@ -38,54 +38,20 @@ $(document).ready(function() {
     },
     },
   
-     submitHandler:function(event){
-        
-             
-          
-        var formData = {
-            'fullname': $('input[name=fullname]').val(),
-            'email': $('input[name=email]').val(),
-            'message': $('textarea[name=message]').val()
-        };
-
-       
+      submitHandler:function formSubmit(){
         $.ajax({
-            type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-            url         : 'suggestions.php', // the url where we want to POST
-            data        : formData, // our data object
-            dataType    : 'json', // what type of data do we expect back from the server
-            encode          : true,
-       
-            success:function(data){
-              console.log(data);
-              if(data.success==true){
-                console.log('completed');
-                //$("#").reset();
-                document.getElementById("submitBtn").reset();
-
-              }else{
-                console.log('validation fail');
-
-              }
-            },
-            error:function(error){
-              console.log(error);
+            type:'POST',
+            url:'js/configcontact.php',
+            data:$('#registerform').serialize(),
+            success:function(response){
+                $('#success').html(response);
             }
-          })
-
-
-
-
+        });
+        var form=document.getElementById('registerform').reset();
         return false;
-
-     }
-
+    }
     });
 
 
-  // $(".submit").on("click",function(event) {
-            
-       
-  //   });
-
+ 
 });

@@ -1,4 +1,4 @@
-CREATE TABLE `form_data` (
+CREATE TABLE `form` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `file_names` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'File names in a comma-separated string',
  `firstname` varchar(50) COLLATE utf8_unicode_ci NOT NULL,

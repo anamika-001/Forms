@@ -69,51 +69,30 @@
       },
 
 
-     submitHandler:function(event){
-          var formData = {
-              'firstname': $('input[name=firstname]').val(),
-              'lastname': $('input[name=lastname]').val(),
-              'email': $('input[name=email]').val(),
-              'contact': $('input[name=contact]').val(),
-              'password': $('input[name=password]').val(),
-              'confirmpassword': $('input[name=confirmpassword]').val(),
-              'description': $('textarea[name=description]').val(),
-          };
-
-         
-          $.ajax({
-              type        : 'POST', // define the type of HTTP verb we want to use (POST for our form)
-              url         : 'form.php', // the url where we want to POST
-              data        : formData, // our data object
-              dataType    : 'json', // what type of data do we expect back from the server
-              encode          : true,
-         
-              success:function(data){
-                console.log(data);
-                if(data.success==true){
-                  console.log('completed');
-
-                }else{
-                  console.log('validation fail');
-
-                }
-              },
-              error:function(error){
-                console.log(error);
-              }
-            })
-
-          return false;
-   }
+      submitHandler:function formSubmit(){
+        $.ajax({
+            type:'POST',
+            url:'js/dbconfig.php',
+            data:$('#fform').serialize(),
+            success:function(response){
+                $('#success').html(response);
+            }
+        });
+        var form=document.getElementById('fform').reset();
+        return false;
+       }
   });
 
+});
 
-
-  });
 
     // // -----------ajax------------------
     // $("#fform").on('submit', function(e){
-    //       e.preventDefault();
+
+
+    //        submitHandler:function(event){
+
+    //    e.preventDefault();
     //       $.ajax({
     //           type: 'POST',
     //           url: 'submit.php',
@@ -145,10 +124,8 @@
     //           error: function(error){
     //             console.log(error);
     //           }
-    //       });
-    //   });
-    
-    //   // File type validation
+    //         });
+    //        // File type validation
     //   var match = [ 'image/jpeg', 'image/png', 'image/jpg'];
     //   $("#file").change(function() {
     //       for(i=0;i<this.files.length;i++){
@@ -161,4 +138,10 @@
     //               return false;
     //           }
     //       }
+
+
+
+    //     }
+    //   });
+    // //      
     //   });
