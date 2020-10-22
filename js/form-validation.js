@@ -79,69 +79,9 @@
             }
         });
         var form=document.getElementById('fform').reset();
-        return false;
+        return true;
        }
   });
 
 });
 
-
-    // // -----------ajax------------------
-    // $("#fform").on('submit', function(e){
-
-
-    //        submitHandler:function(event){
-
-    //    e.preventDefault();
-    //       $.ajax({
-    //           type: 'POST',
-    //           url: 'submit.php',
-    //           data: new FormData(this),
-    //           dataType: 'json',
-    //           contentType: false,
-    //           cache: false,
-    //           processData:false,
-    //           beforeSend: function(){
-                
-    //               $('.submitbtn').attr("disabled","disabled");
-    //               $('#fform').css("opacity",".5");
-          
-    //           },
-               
-    //           success: function(response){
-                  
-    //               $('.statusMsg').html('');
-    //               if(response.status == 1){
-    //                   $('#fform')[0].reset();
-    //                   $('.statusMsg').html('<p class="alert alert-success">'+response.message+'</p>');
-    //               }else{
-    //                   $('.statusMsg').html('<p class="alert alert-danger">'+response.message+'</p>');
-    //               }
-    //               $('#fform').css("opacity","");
-    //               $(".submitbtn").removeAttr("disabled");
-    //           }
-
-    //           error: function(error){
-    //             console.log(error);
-    //           }
-    //         });
-    //        // File type validation
-    //   var match = [ 'image/jpeg', 'image/png', 'image/jpg'];
-    //   $("#file").change(function() {
-    //       for(i=0;i<this.files.length;i++){
-    //           var file = this.files[i];
-    //           var fileType = file.type;
-        
-    //           if(!((fileType == match[0]) || (fileType == match[1]) || (fileType == match[2]))){
-    //               alert('Sorry, only JPG, JPEG, & PNG files are allowed to upload.');
-    //               $("#file").val('');
-    //               return false;
-    //           }
-    //       }
-
-
-
-    //     }
-    //   });
-    // //      
-    //   });
