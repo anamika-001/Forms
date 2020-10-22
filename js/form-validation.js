@@ -74,12 +74,15 @@
             type:'POST',
             url:'js/dbconfig.php',
             data:$('#fform').serialize(),
+            cache: false,
+            contentType: 'multipart/form-data',
+            processData: false,
             success:function(response){
                 $('#success').html(response);
             }
         });
         var form=document.getElementById('fform').reset();
-        return true;
+        return false;
        }
   });
 

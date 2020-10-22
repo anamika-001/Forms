@@ -1,36 +1,38 @@
 <?php
- if(isset($_POST['submit'])){
 
     $firstname=test_input($_POST['firstname']);
    
-    $lastname=test_input($_REQUEST['lastname']);
+    $lastname=test_input($_POST['lastname']);
    
-	$email=test_input($_REQUEST['email']);
-    $contact=test_input($_REQUEST['contact']);
-    $password=test_input($_REQUEST['password']);
-    $confirmpassword=test_input($_REQUEST['confirmpassword']);
-    $description=test_input($_REQUEST['description']);
+	$email=test_input($_POST['email']);
+    $contact=test_input($_POST['contact']);
+    $password=test_input($_POST['password']);
+    $confirmpassword=test_input($_POST['confirmpassword']);
+    $description=test_input($_POST['description']);
     if (isset($_FILES['file'])) {
         $files=$_FILES['file']['name'];
+        echo $files;
     }
    
     
 
     $valid_ext = array('png','jpeg','jpg');
 
-            
-       $photoExt1 = @end(explode('.', $files)); // explode the image name to get the extension
+        print_r(explode('.', $files));die;   
+       $photoExt1 = @end(explode('.', $files)); 
+       // explode the image name to get the extension
        $phototest1 = strtolower($photoExt1);
-            
+       echo $phototest1;   
        $new_profle_pic = time().'.'.$phototest1;
             
        // Location
        $location = "../images/".$new_profle_pic;
-
+       echo $location;
        // file extension
        $file_extension = pathinfo($location, PATHINFO_EXTENSION);
+       echo $file_extension;
        $file_extension = strtolower($file_extension);
-    
+       echo $file_extension;
        
        if(in_array($file_extension,$valid_ext)){  
 
@@ -53,7 +55,7 @@
         {
                 echo "File format is not correct.";
         }
- }
+ 
 
 	
 
