@@ -19,7 +19,7 @@
         mysqli_query($conn, $update) or die(mysqli_error());
         if(mysqli_query($conn,$update)){ 
                 echo '<div style="background-color:palegreen;" class="text-center"><h5 style="color:green;">Record Updated Successfully<h5></div>';
-                 header( "refresh:5;url=view.php" );
+                  header( "refresh:2;url=view.php" );
              }
         else{
           echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
@@ -127,7 +127,7 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
-        <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+       <!--  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="dist/jquery.validate.min.js"></script>
         <script src="js/form-validation.js"></script> -->
        <!--  javascript -->

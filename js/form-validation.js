@@ -77,9 +77,17 @@
             cache: false,
             //contentType: 'multipart/form-data',
             processData: false,
-            success:function(response){
+            
+            success:function(data){
                 $('#success').html(response);
-            }
+        console.log(data);
+       
+      swal("¡Success!", "Message sent!", "success");
+      },
+      error:function(data){
+       
+      swal("Oops...", "Something went wrong :(", "error");
+      }
         });
         var form=document.getElementById('fform').reset();
         return false;
