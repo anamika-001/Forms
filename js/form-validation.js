@@ -72,10 +72,10 @@
       submitHandler:function formSubmit(){
         $.ajax({
             type:'POST',
-            url:'js/dbconfig.php',
+            url:'js/upload.php',
             data:$('#fform').serialize(),
             cache: false,
-            contentType: 'multipart/form-data',
+            //contentType: 'multipart/form-data',
             processData: false,
             success:function(response){
                 $('#success').html(response);
@@ -86,5 +86,25 @@
        }
   });
 
+
+
+
 });
+
+// $(document).on('click','.submit',function(e) {
+//   $.ajax({
+//             type:'POST',
+//             url:'js/dbconfig.php',
+//             data:$('#fform').serialize(),
+//             cache: false,
+//             contentType: 'multipart/form-data',
+//             processData: false,
+//             success:function(response){
+//                 $('#success').html(response);
+//             }
+//         });
+//         var form=document.getElementById('fform').reset();
+//         return false;
+//        }
+//  });
 

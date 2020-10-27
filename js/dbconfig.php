@@ -14,7 +14,7 @@ if (!$conn) {
     die("Connection failed: ".mysqli_connect_error()); 
 }
  
- require 'upload.php';
+ //require 'upload.php';
 ?>
 
 

@@ -1,5 +1,4 @@
 <?php
-
 $servername     = "localhost:8080"; 
 $username = "root"; 
 $dbpassword = "123456";
@@ -23,7 +22,9 @@ else{
    
 
 	$sql="INSERT INTO contact(fullname,email,message)VALUES('$fullname','$email','$message')";
+     
 
+     print_r(mysqli_query($conn,$sql));// return boolean value
 	if(mysqli_query($conn,$sql)){
 		echo "Successfully Submitted!";
 	
@@ -40,5 +41,7 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
   }
+
+
 
 ?>
