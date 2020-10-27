@@ -1,72 +1,47 @@
 <?php
-include('js/upload.php');
-$id=$_REQUEST['id'];
-//echo $id;
-$query = "SELECT * from form where id='$id'"; 
-$result = mysqli_query($conn,$query);
-//print_r($result);
-//print_r(mysqli_fetch_assoc($result));
-$row = mysqli_fetch_assoc($result);
-// print_r($row);
-//echo $row["id"];
-
-
-?>
- <?php
-                              $status = "";
-
-                              $id=$_REQUEST['id'];
-                                      
-                             
-                                    if(isset($_POST['submit'])) {
-                                             
-                                      
-                                      $firstname =$_POST['firstname'];
-                                      // echo $firstname;
-                                      // die();
-                                      $lastname =$_POST['lastname'];
-                                      $email =$_POST['email'];
-                                      $contact =$_POST['contact'];
-                                      $password =$_POST['password'];
-                                      $confirmpassword =$_POST['confirmpassword'];
-                                      $description =$_POST['description'];
-
-                                      //$submittedby = $_SESSION["username"];
-                              $update="update `form` SET firstname='$firstname',lastname='$lastname', email='$email',contact='$contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
-                                     mysqli_query($conn, $update) or die(mysqli_error());
-                                     // echo '<script type="text/javascript">Record Updated Successfully</script>';
-                                     //  $status = "Record Updated Successfully. </br></br>
-                                     //   <a href='view.php'>View Updated Record</a>";
-                                     //  echo '<p style="color:#FF0000;">"'.$status.'"</p>';
-
-                                      if(mysqli_query($conn,$update)){ 
-
-                  echo '<div style="background-color:palegreen;" class="text-center"><h5 style="color:green;">Record Updated Successfully<h5></div>';
+    include('js/upload.php');
+    // taking id from url
+    $id=$_REQUEST['id'];
+    $query = "SELECT * from form where id='$id'"; 
+    $result = mysqli_query($conn,$query);
+    $row = mysqli_fetch_assoc($result); 
+  // submitting updated field in database
+  if(isset($_POST['submit'])) {
+    $firstname =$_POST['firstname'];
+    $lastname =$_POST['lastname'];
+    $email =$_POST['email'];
+    $contact =$_POST['contact'];
+    $password =$_POST['password'];
+    $confirmpassword =$_POST['confirmpassword'];
+    $description =$_POST['description'];
+    // query for update record
+    $update="update `form` SET firstname='$firstname',lastname='$lastname', email='$email',contact='$contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
+        mysqli_query($conn, $update) or die(mysqli_error());
+        if(mysqli_query($conn,$update)){ 
+                echo '<div style="background-color:palegreen;" class="text-center"><h5 style="color:green;">Record Updated Successfully<h5></div>';
                  header( "refresh:5;url=view.php" );
              }
-             else{
-
-              echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
-             }
-                                     }   
-                               ?>
-
+        else{
+          echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
+            }
+         }   
+   ?>
+<!-- html form for edit form field -->
  <!DOCTYPE html>
 <html>
-        <head>
+      <head>
         	<title>EDIT_FORM</title>
         	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         	<link href="form.css" rel="stylesheet"/>
-        </head>
+      </head>
 <body>
 
    <div class="container-fluid" style="background: solid pink;">
-     
-
-            <!--  card -->
+        <!--  card -->
     <div class="col-md-12" style="padding-left: 150px; padding-right: 150px;" >
       <div class="card" style="background-color: white;" >
       	<div class="form">
+         <!--  link to navigate on another page -->
            <p class="text-center"><a href="contact.html">Contact Us</a> 
              | <a href="form.html">Insert New Record</a> 
                | <a href="view.php">View Record</a></p>
