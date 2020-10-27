@@ -1,13 +1,56 @@
 <?php
 include('js/upload.php');
 $id=$_REQUEST['id'];
-$query = "SELECT * from form where id='".$id."'"; 
-$result = mysqli_query($conn, $query) or die ( mysqli_error());
+//echo $id;
+$query = "SELECT * from form where id='$id'"; 
+$result = mysqli_query($conn,$query);
+//print_r($result);
+//print_r(mysqli_fetch_assoc($result));
 $row = mysqli_fetch_assoc($result);
-
+// print_r($row);
+//echo $row["id"];
 
 
 ?>
+ <?php
+                              $status = "";
+
+                              $id=$_REQUEST['id'];
+                                      
+                             
+                                    if(isset($_POST['submit'])) {
+                                             
+                                      
+                                      $firstname =$_POST['firstname'];
+                                      //echo $firstname;
+                                      //die();
+                                      $lastname =$_POST['lastname'];
+                                      $email =$_POST['email'];
+                                      $contact =$_POST['contact'];
+                                      $password =$_POST['password'];
+                                      $confirmpassword =$_POST['confirmpassword'];
+                                      $description =$_POST['description'];
+
+                                      //$submittedby = $_SESSION["username"];
+                              $update="update `form` SET firstname='$firstname',lastname='$lastname', email='$email',contact='$contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
+                                     mysqli_query($conn, $update) or die(mysqli_error());
+                                     // echo '<script type="text/javascript">Record Updated Successfully</script>';
+                                     //  $status = "Record Updated Successfully. </br></br>
+                                     //   <a href='view.php'>View Updated Record</a>";
+                                     //  echo '<p style="color:#FF0000;">"'.$status.'"</p>';
+
+                                      if(mysqli_query($conn,$update)){ 
+
+                  echo '<div style="background-color:palegreen;" class="text-center"><h5 style="color:green;">Record Updated Successfully<h5></div>';
+                  //echo '<a href='view.php'>View Updated Record</a>';
+             }
+             else{
+
+              echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
+             }
+                                     }   
+                               ?>
+
  <!DOCTYPE html>
 <html>
         <head>
@@ -31,7 +74,7 @@ $row = mysqli_fetch_assoc($result);
         <div class="text-center" style="padding: 10px; color: teal;"><h2>Update Record</h2></div>
            <!--  form -->
 
-            <form action="view.php"method="post" name="registration" id="fform" enctype="multipart/form-data" onsubmit="return formSubmit();">
+            <form action="" method="post" name="registration" id="fform" enctype="multipart/form-data" >
               
               <div class="card-body form-group " >
                 <div class="text-center" style="background-color: palegreen;"><h5 id="success" style="color: green;"></h5></div>
@@ -83,11 +126,12 @@ $row = mysqli_fetch_assoc($result);
                         <!-- button-section -->
                          <div  style="padding: 35px;">
 
-                           <button type="updat" name="update" value="submit" class="btn submitbtn" style="background:green; height: 40px ; width: 100px; ">Save Edit
+                           <button name="submit" value="submit" type="submit" class="btn submitbtn" style="background:green; height: 40px ; width: 100px; ">Save Edit
                            </button>
                          </div>
-
-
+                         
+                        
+                  
                                
                     </div>
             	</div>
@@ -108,9 +152,9 @@ $row = mysqli_fetch_assoc($result);
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
-        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="dist/jquery.validate.min.js"></script>
-        <script src="js/form-validation.js"></script>
+        <script src="js/form-validation.js"></script> -->
        <!--  javascript -->
         <script>
             function previewFile(input){
@@ -130,30 +174,4 @@ $row = mysqli_fetch_assoc($result);
  </body>
 </html>
 
-
-                           <?php
-                              $status = "";
-                              if(isset($_POST['update'])){
-                                     
-                                      $id=$_REQUEST['id'];
-                                      //$trn_date = date("Y-m-d H:i:s");
-                                      $firstname =$_REQUEST['firstname'];
-                                      $lastname =$_REQUEST['lastname'];
-                                      $email =$_REQUEST['email'];
-                                      $contact =$_REQUEST['contact'];
-                                      $password =$_REQUEST['password'];
-                                      $confirmpassword =$_REQUEST['confirmpassword'];
-                                      $description =$_REQUEST['description'];
-
-                                      //$submittedby = $_SESSION["username"];
-                              $update="update `form` SET firstname='$firstname',lastname='$lastname', email='$email',contact='contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
-                                      mysqli_query($conn, $update) or die(mysqli_error());
-                                      // $status = "Record Updated Successfully. </br></br>
-                                      //  <a href='view.php'>View Updated Record</a>";
-                                      // echo '<p style="color:#FF0000;">$status</p>';
-
-                                      if( mysqli_query($conn, $update)){
-                                        echo '<script type="text/java">updated</script>';
-                                      }
-                                          }
-                               ?>
+ 

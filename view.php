@@ -41,7 +41,8 @@ $query="Select * from form ORDER BY id ASC;";
 $result = mysqli_query($conn,$query);
 //print_r($result);
 //print_r(mysqli_fetch_assoc($result));
-while($row = mysqli_fetch_assoc($result)) { ?>
+while($row = mysqli_fetch_assoc($result)) {
+ ?>
 <tr><td align="center"><?php echo $count; ?></td>
 	<td align="center"><?php echo $row["file_names"]; ?></td>
 <td align="center"><?php echo $row["firstname"]; ?></td>
