@@ -68,34 +68,29 @@
        
       },
 
-
-      submitHandler:function formSubmit(){
-        $.ajax({
-            type:'POST',
-            url:'js/upload.php',
-            data:$('#fform').serialize(),
-            cache: false,
-            //contentType: 'multipart/form-data',
-            processData: false,
-            
-            success:function(data){
-                $('#success').html(response);
-        console.log(data);
-       
-      swal("¡Success!", "Message sent!", "success");
-      },
-      error:function(data){
-       
-      swal("Oops...", "Something went wrong :(", "error");
-      }
-        });
-        var form=document.getElementById('fform').reset();
-        return false;
-       }
-  });
-
-
-
-
+     
 });
 
+  $("#fform").submit(function(event) {
+     event.preventDefault();
+$.ajax({
+url: "js/upload.php", 
+type: "POST",            
+data: new FormData(this), 
+contentType: false,       
+cache: false,            
+processData:false, 
+              success: function (data) {
+                console.log('Submission was successful.');
+                console.log(data);
+              },
+              error: function (data) {
+                console.log('An error occurred.');
+                console.log(data);
+              }
+          });
+
+           var form=document.getElementById('fform').reset();
+         return false;
+  });
+});

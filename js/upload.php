@@ -1,7 +1,7 @@
   <?php
     include 'dbconfig.php';
     
-   if(isset($_POST['resgistration'])){
+   //if(isset($_POST['resgistration'])){
       $firstname=test_input($_POST['firstname']);
       $lastname=test_input($_POST['lastname']);
       $email=test_input($_POST['email']);
@@ -11,22 +11,24 @@
       $description=test_input($_POST['description']);
       if (isset($_FILES['file'])) {
           $files=$_FILES['file']['name'];
-          $filetmp=$files['tmp_name'];
+          $filetmp=$_FILES['file']['tmp_name'];
           print_r($files); 
-          echo $filetmp;
-      }else{
-        echo "string1";
+          print_r($filetmp);
       }
          $valid_ext = array('png','jpeg','jpg');
          $photoExt1 = @end(explode('.', $files)); 
          $phototest1 = strtolower($photoExt1);
-         $new_profle_pic = time().'.'.$phototest1;
-         $location = "../images/".$new_profle_pic;
-         $file_extension = pathinfo($location, PATHINFO_EXTENSION);
-         $file_extension = strtolower($file_extension);
-         if(in_array($file_extension,$valid_ext)){  
+        // print_r($phototest1);
+         //$new_profle_pic = time().'.'.$phototest1;
+         //print_r($new_profle_pic);
+         // $location = "../images/".$new_profle_pic;
+         // $file_extension = pathinfo($location, PATHINFO_EXTENSION);
+         // $file_extension = strtolower($file_extension);
+         if(in_array($phototest1,$valid_ext)){  
+               $location = "../images/".$files;
+               move_uploaded_file($filetmp, $location);
               // Compress Image
-              compressedImage($_FILES['file']['tmp_name'],$location,60);
+              compressedImage($_files,$location,60);
                   $sql="INSERT INTO form(file_names,firstname,lastname,email,contact,password,confirmpassword,description)VALUES('$files','$firstname','$lastname','$email','$contact','$password','$confirmpassword','$description')";
 
                if(mysqli_query($conn,$sql)){
@@ -35,14 +37,11 @@
                else{
                     echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
                }
-               //mysqli_close($conn);
+               mysqli_close($conn);
    
           }
-          else
-          {
-                  echo "File format is not correct.";
-          }
-   }
+          
+   //}
    function test_input($data) {
       $data = trim($data);
       $data = stripslashes($data);
