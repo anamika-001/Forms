@@ -18,12 +18,7 @@
          $valid_ext = array('png','jpeg','jpg');
          $photoExt1 = @end(explode('.', $files)); 
          $phototest1 = strtolower($photoExt1);
-        // print_r($phototest1);
-         //$new_profle_pic = time().'.'.$phototest1;
-         //print_r($new_profle_pic);
-         // $location = "../images/".$new_profle_pic;
-         // $file_extension = pathinfo($location, PATHINFO_EXTENSION);
-         // $file_extension = strtolower($file_extension);
+        
          if(in_array($phototest1,$valid_ext)){  
                $location = "../images/".$files;
                move_uploaded_file($filetmp, $location);

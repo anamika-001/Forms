@@ -1,5 +1,4 @@
-
-  $(document).ready(function() {
+ $(document).ready(function() {
      $.validator.addMethod("EMAIL", function(value, element) {
                   return this.optional(element) || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/i.test(value);
               }, "Email Address is invalid: Please enter valid email address.");
@@ -68,31 +67,7 @@
        
       },
 
-     
-});
-
-  $("#fform").submit(function(event) {
-     event.preventDefault();
-$.ajax({
-url: "js/upload.php", 
-type: "POST",            
-data: new FormData(this), 
-contentType: false,       
-cache: false,            
-processData:false, 
-              success: function (data) {
-                alert('successfully submitted');
-                console.log('Submission was successful.');
-                window.location.replace("http://localhost//Form-and-Contact-main/view.php");
-                console.log(data);
-              },
-              error: function (data) {
-                console.log('An error occurred.');
-                console.log(data);
-              }
-          });
-
-           var form=document.getElementById('fform').reset();
-         return false;
-  });
+     submitHandler:function(event){
+      form.submit();
+     }
 });

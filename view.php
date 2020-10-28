@@ -2,7 +2,7 @@
 	 // datbase connection and form data file
 	include('js/dbconfig.php');
 
-	include('js/upload.php');
+	//include('js/upload.php');
 	?>
 
    <!--  html file -->
@@ -44,7 +44,7 @@
 	 ?>
 	<tr>
 	<td scope="row" align="center"><?php echo $count; ?></td>
-	<td align="center"><img src= "<?php echo $row["file_names"]; ?>" alt='<?php echo $row["file_names"];?>' style="height:100px; width:100px;"></td>
+	<td align="center"><img src= "images/<?php echo $row["file_names"];?>" alt='<?php echo $row["file_names"];?>' style="height:100px; width:100px;"></td>
 	<td align="center"><?php echo $row["firstname"]; ?></td>
 	<td align="center"><?php echo $row["lastname"]; ?></td>
 	<td align="center"><?php echo $row["email"]; ?></td>

@@ -1,5 +1,5 @@
 <?php
-    include('js/upload.php');
+    include('js/dbconfig.php');
     // taking id from url
     $id=$_REQUEST['id'];
     $query = "SELECT * from form where id='$id'"; 
@@ -7,6 +7,8 @@
     $row = mysqli_fetch_assoc($result); 
   // submitting updated field in database
   if(isset($_POST['submit'])) {
+    $files=$_FILES['file']['name'];
+    //echo $files;
     $firstname =$_POST['firstname'];
     $lastname =$_POST['lastname'];
     $email =$_POST['email'];
@@ -15,8 +17,10 @@
     $confirmpassword =$_POST['confirmpassword'];
     $description =$_POST['description'];
     // query for update record
-    $update="update `form` SET firstname='$firstname',lastname='$lastname', email='$email',contact='$contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
-        mysqli_query($conn, $update) or die(mysqli_error());
+
+  if(isset($files)){
+        $update="update `form` SET file_names='$files',firstname='$firstname',lastname='$lastname', email='$email',contact='$contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
+          mysqli_query($conn, $update) or die(mysqli_error());
         if(mysqli_query($conn,$update)){ 
                 echo '<div style="background-color:palegreen;" class="text-center"><h5 style="color:green;">Record Updated Successfully<h5></div>';
                   header( "refresh:2;url=view.php" );
@@ -24,7 +28,18 @@
         else{
           echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
             }
-         }   
+      }else{
+          $update="update `form` SET firstname='$firstname',lastname='$lastname', email='$email',contact='$contact',password='$password',confirmpassword='$confirmpassword',description='$description' where id='$id'";
+            mysqli_query($conn, $update) or die(mysqli_error());
+             if(mysqli_query($conn,$update)){ 
+                echo '<div style="background-color:palegreen;" class="text-center"><h5 style="color:green;">Record Updated Successfully<h5></div>';
+                  header( "refresh:2;url=view.php" );
+             }
+           else{
+              echo '<div style="background-color:#ffcccb;"><h5 style="color:red;">Error!<h5></div>';
+            }
+        } 
+      }  
    ?>
 <!-- html form for edit form field -->
  <!DOCTYPE html>
@@ -56,12 +71,12 @@
                   <!--  profile-image -->
             	    <div class="text-center profile"> 
                         <div class="text-center" style="width: 100px;height:100px; border:1px solid teal; background-color: white;">
-                            <img id="previewImg" name="image" >
+                            <img id="previewImg" name="image" src= "images/<?php echo $row["file_names"]; ?>" >
                         </div>
                     </div>
                     <br>
                     <div class="profile"> 
-                       <input id="file" class="text-center" type="file" name="file" accept=".png,.jpg,.jpeg" placeholder="Photo" capture style="padding-left: 200px;" onchange="previewFile(this);" required="" value="<?php echo $row["file_names"]; ?>">
+                       <input id="file" class="text-center" type="file" name="file" accept=".png,.jpg,.jpeg" placeholder="Photo" capture style="padding-left: 200px;" onchange="previewFile(this);"value="<?php echo $row["file_names"]; ?>"  required="" >
                     </div>
                     <br> 
 
@@ -127,9 +142,9 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
-       <!--  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="dist/jquery.validate.min.js"></script>
-        <script src="js/form-validation.js"></script> -->
+        <script src="edit-validation.js"></script>
        <!--  javascript -->
         <script>
             function previewFile(input){
