@@ -16,7 +16,7 @@
 	<div class="form">
     <h2 class="text-center txt-primary" >View Records</h2>
    <!--  table  -->
-	<table class="text-center table table-striped table-hover">
+	<table class="text-center table table-striped table-hover" style="width: 100%;">
 	<!-- table-head -->
 	<thead class="thead-dark">
 	<tr>

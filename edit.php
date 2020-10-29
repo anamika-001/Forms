@@ -8,7 +8,7 @@
   // submitting updated field in database
   if(isset($_POST['submit'])) {
     $files=$_FILES['file']['name'];
-    //echo $files;
+    echo $files;
     $firstname =$_POST['firstname'];
     $lastname =$_POST['lastname'];
     $email =$_POST['email'];
@@ -76,7 +76,7 @@
                     </div>
                     <br>
                     <div class="profile"> 
-                       <input id="file" class="text-center" type="file" name="file" accept=".png,.jpg,.jpeg" placeholder="Photo" capture style="padding-left: 200px;" onchange="previewFile(this);"value="<?php echo $row["file_names"]; ?>"  required="" >
+                       <input id="file" class="text-center" type="file" name="file" accept=".png,.jpg,.jpeg" placeholder="Photo" capture style="padding-left: 200px;" onchange="previewFile(this);"value="<?php echo $row["file_names"]; ?>">
                     </div>
                     <br> 
 
